@@ -37,3 +37,6 @@ jobs:
 
       - name: Run Formatting
         run: test -z $(go fmt ./...)
+
+      - name: Run Linting (staticcheck)
+        uses: golangci/golangci-lint-action@v6.1.0
