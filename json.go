@@ -27,6 +27,5 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 		return
 	}
 	w.WriteHeader(code)
-	//#nosec G104
 	w.Write(dat) //nolint:errcheck
 }
