@@ -32,3 +32,13 @@ jobs:
 
       - name: Push Image to GCP Artifact Registry
         run: gcloud builds submit --tag us-west2-docker.pkg.dev/primal-monument-436022-b2/notely-ar-repo/notely:latest .
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy notely \
+          --image us-west2-docker.pkg.dev/primal-monument-436022-b2/notely-ar-repo/notely:latest \
+          --region us-west2 \
+          --allow-unauthenticated \
+          --project primal-monument-436022-b2 \
+          --max-instances=4
+
