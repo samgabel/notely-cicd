@@ -19,3 +19,14 @@ jobs:
 
       - name: Build app
         run: ./scripts/buildprod.sh
+
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Set up gcloud Cloud SDK environment
+        uses: google-github-actions/setup-gcloud@v2.1.1
+
+      - name: Push Image to GCP Artifact Registry
+        run: gcloud builds submit --tag us-west2-docker.pkg.dev/primal-monument-436022-b2/notely-ar-repo/notely:latest .
